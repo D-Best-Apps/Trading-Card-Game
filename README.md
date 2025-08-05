@@ -48,10 +48,10 @@ Make sure you have Docker and Docker Compose installed on your system.
 
 1.  **Clone the repository:**
     ```bash
-    git clone YOUR_GITHUB_REPO_URL
+    git clone [YOUR_GITHUB_REPO_URL](https://github.com/D-Best-Apps/Trading-Card-Game/tree/main)
     cd Trading\ Game # Or the name of your cloned directory
     ```
-    **IMPORTANT:** Replace `YOUR_GITHUB_REPO_URL` with the actual HTTPS URL of your GitHub repository (e.g., `https://github.com/your-username/your-repo-name.git`).
+    **IMPORTANT:** Replace `[YOUR_GITHUB_REPO_URL](https://github.com/D-Best-Apps/Trading-Card-Game/tree/main)` with the actual HTTPS URL of your GitHub repository (e.g., `[https://github.com/your-username/your-repo-name.git](https://github.com/D-Best-Apps/Trading-Card-Game/tree/main)`).
 
 2.  **Configure Environment Variables:**
     Create a `.env` file in the root of your project directory (where `docker-compose.yml` is located). This file will store your database credentials and other sensitive information. **Do NOT commit this file to your Git repository.**
