@@ -141,7 +141,3 @@ server/
 ## Contributing
 
 Feel free to fork the repository, make changes, and submit pull requests. Please ensure your code adheres to the existing style and passes all tests.
-
-## License
-
-[Specify your license here, e.g., MIT License, Apache 2.0 License, etc.]
