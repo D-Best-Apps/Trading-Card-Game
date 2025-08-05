@@ -1,6 +1,6 @@
 # Trading Game Application
 
-This repository contains the full stack for the Trading Game application, including a React frontend, a Node.js/Express backend, and a MariaDB database.
+This is the full stack for the Trading Game application, including a React frontend, a Node.js/Express backend, and a MariaDB database.
 
 ## Overview
 
@@ -48,10 +48,10 @@ Make sure you have Docker and Docker Compose installed on your system.
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/D-Best-Apps/Trading-Card-Game/tree/main
+    git clone https://github.com/D-Best-Apps/Trading-Card-Game.git
     cd Trading\ Game # Or the name of your cloned directory
     ```
-    **IMPORTANT:** Replace `https://github.com/D-Best-Apps/Trading-Card-Game/tree/main` with the actual HTTPS URL of your GitHub repository (e.g., `(https://github.com/D-Best-Apps/Trading-Card-Game.git)`).
+    
 
 2.  **Configure Environment Variables:**
     Create a `.env` file in the root of your project directory (where `docker-compose.yml` is located). This file will store your database credentials and other sensitive information. **Do NOT commit this file to your Git repository.**
