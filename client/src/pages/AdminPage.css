@@ -1,0 +1,208 @@
+/* client/src/pages/AdminPage.css */
+
+.admin-login-container {
+  max-width: 400px; /* Smaller width for login form */
+  margin: 10vh auto; /* Center vertically with some top margin */
+  padding: 2.5rem; /* More padding */
+  background-color: var(--surface-color);
+  border-radius: 12px; /* More rounded corners */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+  color: var(--text-color);
+  text-align: center; /* Center content inside the container */
+}
+
+.admin-page-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: var(--text-color);
+}
+
+.admin-login-container h2,
+.admin-page-container h1 {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 2rem; /* More space below heading */
+  font-size: 2rem; /* Larger heading */
+}
+
+.form-group {
+  margin-bottom: 1.5rem; /* More space between form groups */
+  text-align: left; /* Align labels and inputs to the left */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: bold;
+  color: var(--text-color-secondary);
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="number"] {
+  width: 100%;
+  padding: 1rem; /* Larger input fields */
+  border: 1px solid var(--border-color);
+  border-radius: 6px; /* Slightly more rounded inputs */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: 1.1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus,
+.form-group input[type="number"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(97, 218, 251, 0.4); /* More prominent focus effect */
+}
+
+.admin-login-container button {
+  width: 100%;
+  padding: 1rem 1.5rem; /* Larger button */
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1.5rem; /* Space above the button */
+}
+
+.admin-login-container button:hover {
+  background-color: #4db8da;
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.settings-section button {
+  display: block;
+  width: auto; /* Allow button to size naturally */
+  padding: 0.8rem 1.5rem;
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.settings-section button:hover {
+  background-color: #4db8da;
+}
+
+.settings-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.settings-section h2 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.settings-section p {
+  margin-bottom: 1rem;
+}
+
+.settings-section .form-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.settings-section .form-group input {
+  flex-grow: 1;
+}
+
+.players-section {
+  margin-top: 2rem;
+}
+
+.players-section h2 {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.player-card {
+  background-color: var(--background-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.player-card h3 {
+  color: var(--text-color);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.player-card button {
+  background-color: var(--accent-color-blue);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.player-card button:hover {
+  background-color: #1976D2;
+}
+
+.player-card p {
+  font-size: 0.9rem;
+  color: var(--text-color-secondary);
+  margin-bottom: 0.5rem;
+  word-break: break-all; /* Ensures long device IDs wrap */
+}
+
+.player-card h4 {
+  color: var(--primary-color);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.player-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.player-card ul li {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem;
+  margin-bottom: 0.3rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.player-card ul.highlight-cards li {
+  background-color: var(--success-color); /* Highlight color */
+  color: var(--background-color);
+  font-weight: bold;
+}
