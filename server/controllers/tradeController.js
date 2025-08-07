@@ -48,7 +48,7 @@ exports.createTrade = async (req, res) => {
         status
       ) VALUES (?, ?, ?, ?, 'pending');
     `;
-    const result = await connection.query(insertQuery, [
+    const [result] = await connection.query(insertQuery, [
       offeringPlayerId,
       receivingPlayerId,
       offeredCardInstanceID,
@@ -60,7 +60,7 @@ exports.createTrade = async (req, res) => {
     // 4. Send success response
     res.status(201).json({
       message: 'Trade offer created successfully!',
-      tradeId: result.insertId.toString(),
+      tradeId: result.insertId,
     });
 
   } catch (err) {
@@ -128,23 +128,10 @@ exports.getTrades = async (req, res) => {
       ORDER BY t.created_at DESC;
     `;
 
-    const rawTrades = await pool.query(query, [playerId, playerId]);
+    const [trades] = await pool.query(query, [playerId, playerId]);
 
-    // --- FIX ---
-    // The client expects a `type` ('incoming' or 'outgoing') and a single
-    // `other_player_name` field. We'll transform the raw trade data to match.
-    const trades = rawTrades.map(trade => {
-      const isCurrentUserOffering = trade.offering_player_device_id === deviceID;
-      return {
-        ...trade,
-        type: isCurrentUserOffering ? 'outgoing' : 'incoming',
-        other_player_name: isCurrentUserOffering ? trade.receiving_player_name : trade.offering_player_name,
-        card_name: trade.offered_card_name, // Simplify for the list view
-      };
-    });
-
-    // Return the transformed list of trades
-    res.json({ trades });
+    // Return the list of trades
+    res.json({ trades: toJSONSafe(trades) });
 
   } catch (err) {
     console.error('Failed to get trades:', err);
@@ -185,7 +172,7 @@ exports.getTradeHistory = async (req, res) => {
       ORDER BY t.created_at DESC;
     `;
     
-    const history = await pool.query(historyQuery, [playerId, playerId, playerId, playerId]);
+    const [history] = await pool.query(historyQuery, [playerId, playerId, playerId, playerId]);
     res.json({ history: toJSONSafe(history) });
 
   } catch (err) {

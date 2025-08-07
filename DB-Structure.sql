@@ -92,3 +92,34 @@ CREATE TABLE IF NOT EXISTS `trades` (
     FOREIGN KEY (`accepted_card_instance_id`)
     REFERENCES `player_cards`(`instance_id`)
     ON DELETE SET NULL);
+
+-- -----------------------------------------------------
+-- Table `clues`
+-- Stores the clues for the scavenger hunt part of the game.
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `clues` (
+  `id` INT UNSIGNED NOT NULL,
+  `message` TEXT NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- -----------------------------------------------------
+-- Table `player_clues`
+-- Tracks which clues a player has successfully scanned.
+-- Prevents a player from scanning the same clue multiple times.
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `player_clues` (
+  `player_id` INT UNSIGNED NOT NULL,
+  `clue_id` INT UNSIGNED NOT NULL,
+  `scanned_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`player_id`, `clue_id`),
+  INDEX `fk_player_clues_clues_idx` (`clue_id` ASC),
+  CONSTRAINT `fk_player_clues_players`
+    FOREIGN KEY (`player_id`)
+    REFERENCES `players` (`id`)
+    ON DELETE CASCADE,
+  CONSTRAINT `fk_player_clues_clues`
+    FOREIGN KEY (`clue_id`)
+    REFERENCES `clues` (`id`)
+    ON DELETE CASCADE
+);

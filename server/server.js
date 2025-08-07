@@ -10,6 +10,7 @@ const cardRoutes = require('./routes/cards');
 const tradeRoutes = require('./routes/trades');
 const statusRoutes = require('./routes/status');
 const adminRoutes = require('./routes/admin');
+const clueRoutes = require('./routes/clues'); // Import the new clue routes
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -23,10 +24,17 @@ app.use('/api/cards', cardRoutes);
 app.use('/api/trades', tradeRoutes);
 app.use('/api/status', statusRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/clues', clueRoutes); // Register the new clue routes
 
 // A root API endpoint to confirm the server is running.
-app.get('/api', (req, res) => {
-  res.json({ message: "Scavenger Hunt API is running!" });
+const path = require('path');
+
+// Serve static files from the React app's build directory
+app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+
+// All other GET requests not handled by the API will return your React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
 });
 
 // Start the server

@@ -122,9 +122,30 @@ function ScanPage() {
     let animationCards = [];
     let clueText = `Scanned: ${decodedText}`;
 
-    if (decodedText.startsWith('Gencard:')) {
+    // Step 1: Handle the clue from the QR code.
+    if (decodedText.startsWith('Gencard: Clue-')) {
+      if (!deviceID) {
+        apiError = "Cannot scan clue: Your user profile is not available.";
+      } else {
+        const clueId = decodedText.substring(14);
+        try {
+          const response = await api.scanClue(deviceID, clueId);
+          clueText = response.message;
+          // If the clue has already been scanned, we can still award a card.
+          // The API returns a specific message for this case which is shown to the user.
+        } catch (error) {
+          apiError = error.message;
+        }
+      }
+    } else if (decodedText.startsWith('Gencard:')) {
       clueText = `Clue: ${decodedText.substring(8)}`;
+    } else {
+      // If the QR code format is unknown, set an error and stop.
+      apiError = "Unknown QR code format.";
+    }
 
+    // Step 2: If the clue was processed successfully, award a card.
+    if (!apiError) {
       if (!deviceID) {
         apiError = "Cannot award card: User profile is missing.";
       } else {
@@ -135,26 +156,28 @@ function ScanPage() {
         ]);
 
         let allCards = [];
-        if (allCardsResult.status === 'fulfilled') {
-          allCards = allCardsResult.value.cards || [];
-          if (allCards.length > 0) {
-            animationCards = allCards;
-          }
+        if (allCardsResult.status === 'fulfilled' && allCardsResult.value.cards) {
+          allCards = allCardsResult.value.cards;
+          animationCards = allCards;
         }
 
         if (awardResult.status === 'fulfilled') {
           const awardedCardInstance = awardResult.value;
+          // Find the full card definition from allCards to show the image and details
           cardToAward = allCards.find(c => c.card_id === awardedCardInstance.card_id) || awardedCardInstance;
         } else {
-          console.error(awardResult.reason);
+          // Fallback: If awarding fails, show a random card the user doesn't own yet.
+          console.error("Card award failed, selecting a fallback card:", awardResult.reason);
           if (allCards.length > 0) {
             const myCards = myCardsResult.status === 'fulfilled' ? (myCardsResult.value.cards || []) : [];
             const myCardIds = new Set(myCards.map(c => c.card_id));
             const unownedCards = allCards.filter(c => !myCardIds.has(c.card_id));
             cardToAward = unownedCards.length > 0
               ? unownedCards[Math.floor(Math.random() * unownedCards.length)]
+              // If they own all cards, just show a random one.
               : allCards[Math.floor(Math.random() * allCards.length)];
           } else {
+            // This is the ultimate fallback if we can't even get the card list.
             apiError = "A server error occurred and we could not award a card. Please try again later.";
           }
         }

@@ -168,3 +168,17 @@ export const getTradeHistory = (deviceID, filters = {}) => {
   const params = new URLSearchParams(filters);
   return fetch(`${API_BASE_URL}/trades/${deviceID}/history?${params}`).then(handleResponse);
 };
+
+/**
+ * Scans a clue and returns the message.
+ * @param {string} deviceID - The player's device ID.
+ * @param {string} clueId - The ID of the clue to scan.
+ * @returns {Promise<object>} The server response.
+ */
+export const scanClue = (deviceID, clueId) => {
+  return fetch(`${API_BASE_URL}/clues/scan`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ deviceID, clueId }),
+  }).then(handleResponse);
+};

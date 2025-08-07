@@ -4,9 +4,6 @@ import Modal from '../components/Layout/Modal';
 import './AdminPage.css';
 
 const AdminPage = () => {
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [playersData, setPlayersData] = useState([]);
   const [requiredCards, setRequiredCards] = useState(0);
   const [newRequiredCards, setNewRequiredCards] = useState(0);
@@ -15,40 +12,8 @@ const AdminPage = () => {
   const [modalContent, setModalContent] = useState({ title: '', message: '' });
 
   useEffect(() => {
-    // Check if admin is already logged in (e.g., from session storage)
-    const loggedIn = sessionStorage.getItem('isAdminLoggedIn');
-    if (loggedIn) {
-      setIsAdminLoggedIn(true);
-      fetchAdminData();
-    }
+    fetchAdminData();
   }, []);
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('/api/admin/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      const data = await response.json();
-
-      if (response.ok) {
-        setIsAdminLoggedIn(true);
-        sessionStorage.setItem('isAdminLoggedIn', 'true');
-        fetchAdminData();
-      } else {
-        setModalContent({ title: 'Login Failed', message: data.message });
-        setIsModalOpen(true);
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      setModalContent({ title: 'Login Error', message: 'Failed to login. Please try again.' });
-      setIsModalOpen(true);
-    }
-  };
 
   const fetchAdminData = async () => {
     try {
@@ -98,42 +63,6 @@ const AdminPage = () => {
     }));
   };
 
-  if (!isAdminLoggedIn) {
-    return (
-      <div className="admin-login-container">
-        <h2>Admin Login</h2>
-        <form onSubmit={handleLogin}>
-          <div className="form-group">
-            <label>Username:</label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Password:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit">Login</button>
-        </form>
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          title={modalContent.title}
-        >
-          <p>{modalContent.message}</p>
-        </Modal>
-      </div>
-    );
-  }
-
   return (
     <div className="admin-page-container">
       <h1>Admin Dashboard</h1>
@@ -149,7 +78,7 @@ const AdminPage = () => {
             onChange={(e) => setNewRequiredCards(parseInt(e.target.value))}
             min="0"
           />
-          <button onClick={handleUpdateRequiredCards}>Update</button>
+          <button onClick={handleUpdateRequiredCards} className="admin-button primary">Update</button>
         </div>
       </div>
 
