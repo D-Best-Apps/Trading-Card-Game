@@ -1,0 +1,142 @@
+.profile-container {
+  text-align: center;
+  padding: 1rem;
+}
+
+.profile-info-box {
+  margin: 2rem auto;
+  max-width: 500px;
+  width: 100%;
+}
+
+.profile-info-box label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-color-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.profile-data {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.5rem;
+}
+
+.name-data {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name-data {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.id-data {
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: var(--success-color);
+}
+
+/* Styles for the creation form */
+.profile-form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.name-input {
+  padding: 0.8rem 1rem;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-width: 250px;
+}
+
+.edit-form {
+  background-color: var(--surface-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+.save-button, .action-button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--success-color);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.edit-button {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.cancel-button {
+  background-color: var(--button-color-cancel);
+  margin-top: 0.5rem;
+}
+
+.save-button:hover, .action-button:hover {
+  filter: brightness(0.9);
+}
+
+.save-button:disabled, .action-button:disabled {
+  background-color: var(--surface-color);
+  cursor: not-allowed;
+}
+
+.save-button.success:disabled {
+  background-color: var(--success-color);
+  cursor: default;
+}
+
+.error-message, .status-message {
+  margin-top: 1rem;
+  color: var(--error-color);
+}
+
+.success-message {
+  margin-top: 1rem;
+  color: var(--success-color);
+  font-weight: bold;
+}
+
+.status-message {
+  color: var(--success-color);
+  background-color: var(--surface-color);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+  .profile-container {
+    padding: 1rem;
+  }
+
+  .form-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .name-input {
+    min-width: 0;
+    width: 100%;
+  }
+}
