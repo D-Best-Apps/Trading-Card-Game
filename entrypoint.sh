@@ -11,8 +11,16 @@ until nc -z -v -w30 db 3306; do
  sleep 5
 done
 
+# Grant permissions to the user. This is more reliable than relying on the image's default user creation.
+echo "Database is up, ensuring user permissions..."
+mariadb -h db -u root -p"$DB_ROOT_PASSWORD" --ssl=0 <<-EOSQL
+    CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASSWORD';
+    GRANT ALL PRIVILEGES ON `$DB_DATABASE`.* TO '$DB_USER'@'%';
+    FLUSH PRIVILEGES;
+EOSQL
+
 # Execute the SQL scripts in the correct order
-echo "Database is up, running setup scripts..."
+echo "Running setup scripts..."
 
 mariadb -h db -u "$DB_USER" -p"$DB_PASSWORD" "$DB_DATABASE" --ssl=0 < /Container/DB-Structure.sql
 mariadb -h db -u "$DB_USER" -p"$DB_PASSWORD" "$DB_DATABASE" --ssl=0 < /Container/DB-Admin-Structure.sql
