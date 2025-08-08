@@ -14,6 +14,7 @@ done
 # Grant permissions to the user. This is more reliable than relying on the image's default user creation.
 echo "Database is up, ensuring user permissions..."
 mariadb -h db -u root -p"$DB_ROOT_PASSWORD" --ssl=0 <<-EOSQL
+    CREATE DATABASE IF NOT EXISTS `$DB_DATABASE`;
     CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASSWORD';
     GRANT ALL PRIVILEGES ON `$DB_DATABASE`.* TO '$DB_USER'@'%';
     FLUSH PRIVILEGES;
