@@ -1,0 +1,140 @@
+.scan-page-container {
+  padding: 1rem 2rem 80px 2rem; /* Add padding for navbar */
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 80px); /* Full height minus navbar */
+}
+
+.scan-button {
+  background-color: var(--success-color); /* Use theme color */
+  border: none;
+  color: white;
+  padding: 0.8rem 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin: 0.5rem;
+}
+
+.scan-button:hover {
+  filter: brightness(0.9);
+}
+
+.scan-button.cancel {
+  background-color: var(--error-color); /* Use theme color */
+}
+.scan-button.cancel:hover {
+  filter: brightness(0.9);
+}
+
+.result-container {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--surface-color);
+  border-radius: 8px;
+}
+
+.result-text {
+  background-color: var(--background-color);
+  padding: 1rem;
+  border-radius: 4px;
+  font-family: monospace;
+  word-wrap: break-word;
+  margin-top: 0.5rem;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.reward-title {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--accent-color-gold);
+}
+
+.awarded-card-wrapper {
+  max-width: 220px;
+  margin: 0 auto 1.5rem auto;
+  perspective: 1000px; /* For 3D animations */
+}
+
+.card-reveal-animation.is-revealing .card-container {
+  animation: card-flicker 0.12s infinite;
+}
+
+.card-reveal-animation:not(.is-revealing) .card-container {
+  animation: final-card-reveal 0.6s ease-out forwards;
+}
+
+.card-placeholder {
+  width: 220px;
+  height: 307px;
+  background-color: var(--surface-color);
+  border: 2px dashed var(--border-color);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-actions {
+  margin-top: 1rem;
+}
+
+@keyframes card-flicker {
+  0% {
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+}
+
+.error-message {
+  margin-top: 1rem;
+  color: var(--error-color);
+  background-color: rgba(244, 67, 54, 0.1);
+  padding: 0.8rem;
+  border-radius: 4px;
+  border: 1px solid var(--error-color);
+}
+
+@keyframes final-card-reveal {
+  from {
+    transform: scale(1.5) rotateY(90deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+.qr-scanner-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 1.5rem auto;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden; /* Ensures the scanner UI fits within the rounded corners */
+}
+
+@media (max-width: 600px) {
+  .scan-page-container {
+    padding: 1rem 1rem 80px 1rem;
+  }
+}
+

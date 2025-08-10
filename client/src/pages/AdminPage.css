@@ -1,0 +1,339 @@
+/* client/src/pages/AdminPage.css */
+
+.admin-login-container {
+  max-width: 400px;
+  margin: 10vh auto;
+  padding: 2.5rem;
+  background-color: #1a1a2e;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  color: #e0e0e0;
+  text-align: center;
+}
+
+.admin-page-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #161625;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #e0e0e0;
+}
+
+.admin-login-container h2,
+.admin-page-container h1 {
+  color: #4a90e2;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: bold;
+  color: #a0a0a0;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="number"] {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #2a2a3e;
+  border-radius: 6px;
+  background-color: #2a2a3e;
+  color: #e0e0e0;
+  font-size: 1.1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus,
+.form-group input[type="number"]:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.4);
+}
+
+.admin-login-container button {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1.5rem;
+}
+
+.admin-login-container button:hover {
+  background-color: #357abd;
+  transform: translateY(-2px);
+}
+
+.settings-section, .players-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #1a1a2e;
+  border-radius: 8px;
+  border: 1px solid #2a2a3e;
+}
+
+.settings-section h2, .players-section h2 {
+  color: #4a90e2;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.settings-section p {
+  margin-bottom: 1rem;
+}
+
+.settings-section .form-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.settings-section .form-group input {
+  flex-grow: 1;
+}
+
+.players-grid, .clues-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.player-card {
+  background-color: #161625;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #2a2a3e;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.player-card h3 {
+  color: #e0e0e0;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.player-card button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.player-card button:hover {
+  background-color: #0056b3;
+}
+
+.player-card p {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  margin-bottom: 0.5rem;
+  word-break: break-all;
+}
+
+.player-card h4 {
+  color: #4a90e2;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.player-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.player-card ul li {
+  background-color: #2a2a3e;
+  border: 1px solid #161625;
+  padding: 0.5rem;
+  margin-bottom: 0.3rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.player-card ul.highlight-cards li {
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+}
+
+.admin-button {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.admin-button.primary {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.admin-button.primary:hover {
+  background-color: #357abd;
+  transform: translateY(-2px);
+}
+
+/* Clue Management Specific Styles */
+.clue-management-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #1a1a2e;
+  border-radius: 8px;
+  border: 1px solid #2a2a3e;
+}
+
+.clue-management-section h2 {
+  color: #4a90e2;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.clue-form-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.clue-input {
+  flex: 1;
+  padding: 1rem;
+  border: 1px solid #2a2a3e;
+  border-radius: 6px;
+  background-color: #2a2a3e;
+  color: #e0e0e0;
+  font-size: 1.1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  min-width: 150px; /* Ensure inputs don't get too small */
+}
+
+.clue-input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.4);
+}
+
+.clue-textarea {
+  flex: 1;
+  padding: 1rem;
+  border: 1px solid #2a2a3e;
+  border-radius: 6px;
+  background-color: #2a2a3e;
+  color: #e0e0e0;
+  font-size: 1.1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  min-width: 150px;
+  min-height: 80px; /* Added min-height for textarea */
+  resize: vertical; /* Allow vertical resizing */
+}
+
+.clue-textarea:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.4);
+}
+
+.clue-button {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.clue-button.primary {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.clue-button.primary:hover {
+  background-color: #357abd;
+  transform: translateY(-2px);
+}
+
+.clue-button.success {
+  background-color: #28a745;
+  color: white;
+}
+
+.clue-button.success:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.clue-button.danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.clue-button.danger:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+}
+
+.clue-button.secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.clue-button.secondary:hover {
+  background-color: #5a6268;
+  transform: translateY(-2px);
+}
+
+.clue-card {
+  background-color: #161625;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #2a2a3e;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes buttons to bottom */
+}
+
+.clue-card p {
+  font-size: 1rem;
+  color: #e0e0e0;
+  margin-bottom: 1rem;
+  word-break: break-word;
+}
+
+.clue-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto; /* Pushes actions to the bottom */
+  flex-wrap: wrap;
+}
+
