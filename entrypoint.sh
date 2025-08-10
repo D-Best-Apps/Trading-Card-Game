@@ -16,10 +16,10 @@ done
 # Execute the SQL scripts in the correct order
 echo "Running setup scripts..."
 
-mariadb -h db -u "$DB_USER" -p"$DB_PASSWORD" "$DB_DATABASE" --ssl=0 < /Container/DB-Structure.sql
-mariadb -h db -u "$DB_USER" -p"$DB_PASSWORD" "$DB_DATABASE" --ssl=0 < /Container/DB-Admin-Structure.sql
-mariadb -h db -u "$DB_USER" -p"$DB_PASSWORD" "$DB_DATABASE" --ssl=0 < /Container/Card-Details.sql
-mariadb -h db -u "$DB_USER" -p"$DB_PASSWORD" "$DB_DATABASE" --ssl=0 < /Container/Clues-Data.sql
+mariadb -h db -u "$DB_USER" -p"$DB_PASSWORD" "$DB_DATABASE" --ssl=0 < /Trade/DB-Structure.sql
+mariadb -h db -u "$DB_USER" -p"$DB_PASSWORD" "$DB_DATABASE" --ssl=0 < /Trade/DB-Admin-Structure.sql
+mariadb -h db -u "$DB_USER" -p"$DB_PASSWORD" "$DB_DATABASE" --ssl=0 < /Trade/Card-Details.sql
+mariadb -h db -u "$DB_USER" -p"$DB_PASSWORD" "$DB_DATABASE" --ssl=0 < /Trade/Clues-Data.sql
 
 echo "Database setup complete."
 
